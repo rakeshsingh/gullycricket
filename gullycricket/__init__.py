@@ -6,3 +6,4 @@ app.config.from_object('config')
 
 # Now we can access the configuration variables via app.config["VAR_NAME"].
 import gullycricket.views
+import gullycricket.api
