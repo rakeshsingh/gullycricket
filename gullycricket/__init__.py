@@ -19,3 +19,15 @@ from gullycricket import models, views, api
 
 #register models to dynamodb
 engine.register(models.Player)
+
+# Create the dynamo table for our registered model
+engine.create_schema()
+
+for i in range(1, 10):
+    player = engine.get(models.Player, playerid=str(i), fullname='Player:'+str(i))
+    if player:
+        print('record already present, updating: ', str(player))
+    else:
+        player = Player(i, 'Player:'+str(i), 'testplayer',
+                        'someone@somewhere.com', '+1-000-000-0001')
+        engine.save(player)

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+{% from "_formhelpers.html" import render_field %}
+<div cass= 'row'>
+<table>
+    <form method=poslt action="/registerplayer">
+    <tr><td>{{ render_field(form.email) }} </td></tr>
+    <tr><td>{{ render_field(form.password) }}</td></tr>
+    <tr><td>{{ render_field(form.confirm) }}</td></tr>
+</table>
+  <p><input type=submit value=Register>
+</form>
+</div>
+{% endblock %}
