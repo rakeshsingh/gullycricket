@@ -28,6 +28,6 @@ for i in range(1, 10):
     if player:
         print('record already present, updating: ', str(player))
     else:
-        player = Player(i, 'Player:'+str(i), 'testplayer',
+        player = models.Player(i, 'Player:'+str(i), 'testplayer',
                         'someone@somewhere.com', '+1-000-000-0001')
         engine.save(player)
