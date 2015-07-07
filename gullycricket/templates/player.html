@@ -1,18 +1,145 @@
 {% extends "base.html" %}
 {% block content %}
+<div class='container'>
+		<div class="panel panel-default">
+  		<div class="panel-heading"><h3>{{ player.fullname }}</h3></div>
+
+  		<div class="panel-body">   
+  			<div class="row-fluid">
+  			  		<div class="panel-heading"><h4>About </h4></div>
+  				<div class="col-md-6">
+	  				<div class="table-responsive">
+  					<table class="table">
+  						<tr>
+  							<td>Full Name</td>
+  							<td>{{ player.fullname }} </td>
+  						</tr>
+  						<tr>
+  						<td>Nickname </td>
+  						<td> {{ player.nickname}}</td>
+  						</tr>
+
+  						<tr>
+  						<td>Playing Role </td>
+  						<td> </td>
+  						</tr>
+
+  						<tr>
+  						<td>Battying Style </td>
+  						<td> {{ player.batting_style}}</td>
+  						</tr>
+
+  						<tr>
+  						<td>Bowling Style </td>
+  						<td> {{ player.bowling_style}}</td>
+  						</tr>
+
+
+					</table>
+					</div>
+
+             	</div>
+
+             	<div class="col-md-6">
+             	<img src="http://placehold.it/300x150">
+             	</div>
+             </div>
+
+</div>
+<div class='container'>
+
+             <!-- batting performances-->
+             <div class="row-fluid">
+  			  	<div class="panel-heading"><h4>Batting Performances </h4></div>
+  			  	<div class="col-md-12">
+             		<img src="http://placehold.it/650x200">
+             	</div>
+  			  </div>
+
+             <div class="row-fluid">
+                <div class="col-md-6">
+	  				<div class="table-responsive">
+  					<table class="table">
+  						<tr>
+  						<td>Matches</td>
+  						<td>  </td>
+  						</tr>
+  						<tr>
+  						<td>Total Score</td>
+  						<td> </td>
+  						</tr>
+  						<tr>
+  						<td>Highest Score</td>
+  						<td> </td>
+  						</tr>
+
+  						<tr>
+  						<td>100s </td>
+  						<td> </td>
+  						</tr>
+
+  						<tr>
+  						<td>50s </td>
+  						<td> </td>
+  						</tr>
+
+  						<tr>
+  						<td>25s </td>
+  						<td> </td>
+  						</tr>
+
+
+					</table>
+					</div>
+				</div>
+
+             	<div class="col-md-6">
+             		<img src="http://placehold.it/300x150">
+             	</div>
+  			  </div>
+</div>
 
 <div class='container'>
-<div class="panel panel-default">
-  <div class="panel-heading"><h3>Player Profile</h3>
-  </div>
-  <div class="panel-body">
-            <p>
-             <span class="glyphicon glyphicon-user"></span>
 
-          dfdafd</p>
-      </div>
+  			 <!-- bowling performances-->
+             <div class="row-fluid">
+  			  	<div class="panel-heading"><h4>Bowling Performances </h4></div>
+  			  	<div class="col-md-6">
+	  				<div class="table-responsive">
+  					<table class="table">
+  						<tr>
+  							<td>Number of Matches</td>
+  							<td>  </td>
+  						</tr>
+  						<tr>
+  						<td> Total Wickets </td>
+  						<td> </td>
+  						</tr>
+
+  						<tr>
+  						<td>Best </td>
+  						<td> </td>
+  						</tr>
+
+  						<tr>
+  						<td>10s </td>
+  						<td> </td>
+  						</tr>
+
+  						<tr>
+  						<td>5s </td>
+  						<td> </td>
+  						</tr>
+
+
+					</table>
+					</div>             	</div>
+             	<div class="col-md-6">
+             		<img src="http://placehold.it/300x150">
+             	</div>
+  			  </div>
+
+      	</div>
+	</div>
 </div>
-
-</div>
-
 {% endblock %}
