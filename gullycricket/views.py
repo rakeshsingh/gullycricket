@@ -3,7 +3,7 @@ from gullycricket.models import Player
 from gullycricket.forms import PlayerRegistrationForm
 from gullycricket import utils
 
-from flask import render_template,request
+from flask import render_template,request, jsonify
 
 @app.route('/')
 @app.route('/index')
@@ -54,7 +54,8 @@ def getplayers():
 
 @app.route('/player/<playerid>',methods=['GET'])
 def getplayer(playerid):
-    return render_template('player.html')
+    player=engine.get(Player, playerid=str(playerid), fullname='Player:'+str(playerid))
+    return render_template('player.html',player=player)
 
 
 @app.errorhandler(404)

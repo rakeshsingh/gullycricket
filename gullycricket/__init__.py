@@ -11,7 +11,8 @@ app.config.from_object('config')
 # dynadbo connection
 # Create an engine and connect to an AWS region
 engine = Engine()
-engine.connect_to_host(host='localhost',port=8000)
+#engine.connect_to_host(host='localhost',port=8000)
+engine.connect_to_region('us-west-2')
 
 
 # Now we can access the configuration variables via app.config["VAR_NAME"].
