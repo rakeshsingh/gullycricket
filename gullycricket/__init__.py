@@ -8,19 +8,17 @@ from flywheel import Engine
 app = Flask(__name__)
 app.config.from_object('config')
 
-# dynadbo connection
-# Create an engine and connect to an AWS region
+# dynadbo connection, create an engine and connect to an AWS region or localhost
 engine = Engine()
-#engine.connect_to_host(host='localhost',port=8000)
-engine.connect_to_region('us-west-2')
-
-
+engine.connect_to_host(host='localhost',port=8000)
+#engine.connect_to_region('us-west-2')
 # Now we can access the configuration variables via app.config["VAR_NAME"].
-from gullycricket import models, views, api
-
+from gullycricket import models, views, api,utils
 #register models to dynamodb
 engine.register(models.Player)
+login_manager = utils.get_login_manager()
 
+#below code should go into a init script
 # Create the dynamo table for our registered model
 engine.create_schema()
 
@@ -30,5 +28,5 @@ for i in range(1, 10):
         print('record already present, updating: ', str(player))
     else:
         player = models.Player(i, 'Player:'+str(i), 'testplayer',
-                        'someone@somewhere.com', '+1-000-000-0001')
+                        'player'+str(i)+'@somewhere.com', '+1-000-000-0001')
         engine.save(player)

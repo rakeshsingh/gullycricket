@@ -1,14 +1,13 @@
-from gullycricket import app,engine
-from gullycricket.models import Player
+from flask import render_template, request, jsonify, redirect, url_for,flash
+from gullycricket import app, engine, models, utils
 from gullycricket.forms import PlayerRegistrationForm
-from gullycricket import utils
+from gullycricket.models import Player
 
-from flask import render_template,request, jsonify
 
 @app.route('/')
 @app.route('/index')
 def index():
-    user = {'nickname': 'Rakesh'}  # fake user
+    player = {'nickname': 'Rakesh'}  # fake user
     posts = [  # fake array of posts
         {
             'author': {'nickname': 'John'},
@@ -18,12 +17,15 @@ def index():
             'body': 'The Avengers movie was so cool!'
         }
     ]
-    return render_template("index.html", title='Home', user=user, posts=posts)
+    return render_template("index.html", title='Home', user=player, posts=posts)
 
 
-#login form
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    """
+    Login handler
+    :return: login page
+    """
     error = None
     if request.method == 'POST':
         if request.form['username'] != 'admin' or request.form['password'] != 'admin':
@@ -32,13 +34,16 @@ def login():
             return redirect(url_for('home'))
     return render_template('login.html', error=error)
 
-#player registration
-@app.route('/registerplayer',methods=['GET','POST'])
+
+@app.route('/registerplayer', methods=['GET', 'POST'])
 def register_player():
+    """
+    player registration handler
+    """
     form=PlayerRegistrationForm()
     if request.method == 'POST' and form.validate():
         playerid=utils.get_uuid()
-        player = Player(playerid,email,password)\
+        player = Player(playerid, email, password)\
             (playerid, form.email.data, form.password.data)
         engine.save(player)
         flash('Thanks for registering')
@@ -56,7 +61,6 @@ def getplayers():
 def getplayer(playerid):
     player=engine.get(Player, playerid=str(playerid), fullname='Player:'+str(playerid))
     return render_template('player.html',player=player)
-
 
 @app.errorhandler(404)
 def page_not_found(error):
