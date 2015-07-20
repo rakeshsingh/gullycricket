@@ -1,4 +1,6 @@
 from flask import render_template, request, jsonify, redirect, url_for,flash
+from flask.ext.login import login_required
+
 from gullycricket import app, engine, models, utils
 from gullycricket.forms import PlayerRegistrationForm
 from gullycricket.models import Player
@@ -6,6 +8,7 @@ from gullycricket.models import Player
 
 @app.route('/')
 @app.route('/index')
+@login_required
 def index():
     player = {'nickname': 'Rakesh'}  # fake user
     posts = [  # fake array of posts
@@ -31,7 +34,7 @@ def login():
         if request.form['username'] != 'admin' or request.form['password'] != 'admin':
             error = 'Invalid Credentials. Please try again.'
         else:
-            return redirect(url_for('home'))
+            return redirect(url_for('players'))
     return render_template('login.html', error=error)
 
 

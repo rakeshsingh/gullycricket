@@ -1,9 +1,11 @@
-# flywheel dynamodb
 from datetime import datetime
-from flywheel import Model, Field, GlobalIndex
+from flywheel import Model, Field
 
 
 class Player(Model):
+    """
+    Player Model
+    """
     playerid = Field(hash_key=True)
     fullname = Field(range_key=True)
     nickname = Field()
@@ -29,7 +31,7 @@ class Player(Model):
         self.batting_style='right-hand bat'
         self.bowling_style='right-arm medium-pace'
         self.authenticated = True
-        
+
     def __str__(self):
         return '<User %r:%r>' % (self.playerid, self.fullname)
 
@@ -45,7 +47,6 @@ class Player(Model):
     def is_authenticated(self):
         """Return True if the user is authenticated."""
         return self.authenticated
-
 
     def is_anonymous(self):
         """False, as anonymous users aren't supported."""
